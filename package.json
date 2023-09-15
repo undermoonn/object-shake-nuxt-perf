@@ -1,0 +1,19 @@
+{
+  "name": "vue-reactive-shake-perf",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "mock": "node ./mock/0_gen.mjs"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "nuxt": "^3.7.3"
+  },
+  "dependencies": {
+    "vue-reactive-shake": "1.0.0-alpha.3"
+  }
+}
