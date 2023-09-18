@@ -1,31 +1,46 @@
-### 🚧 Test Case
+### Test Case
 
-- The [test object]('./mock/vrsws.json') is a 6 deeps with each 6 properties object
-- The [walker]('./walker.ts') reached 80% properties in each deep
+- The [test object](./mock/vrsws.json) is a 6 deeps with each 6 properties object
+- The [walker](./walker.ts) reached 80% properties (4 properties) in each deep
 - State was inject into document html with `useState`
-- Runs on 14' M1 Pro
+- Runs on 14' M1 Pro & preview mode
+
+### Measurement
+
+#### Same as `SSR to Full load` in nuxt devtools
+
+> https://github.com/nuxt/devtools/blob/main/packages/devtools/src/runtime/plugins/devtools.server.ts
+
+```ts
+// server plugin
+export default defineNuxtPlugin(() => {
+  const ssrStart = Date.now()
+  useState('ssrStart', () => ssrStart)
+})
+```
+
+---
+
+> https://github.com/nuxt/devtools/blob/main/packages/devtools/src/runtime/plugins/devtools.client.ts
+
+```ts
+// client plugin
+export default defineNuxtPlugin((nuxt: any) => {
+  if (typeof document === 'undefined' || typeof window === 'undefined') return
+  nuxt.hook('app:mounted', () => {
+    const appLoad = Date.now()
+    const ssrStart = useState<number>('ssrStart')
+    const ssrToFullLoadTime = appLoad - ssrStart.value
+
+    // SSR to Full load
+    console.log(ssrToFullLoadTime)
+  })
+})
+```
 
 ### SSR to Full load
 
-#### Dev Mode
-
-| origin | shake |
-| ------ | ----- |
-| 521ms  | 385ms |
-| 509ms  | 353ms |
-| 516ms  | 365ms |
-| 517ms  | 380ms |
-| 512ms  | 348ms |
-| 504ms  | 382ms |
-| 543ms  | 368ms |
-| 499ms  | 370ms |
-| 487ms  | 341ms |
-| 548ms  | 362ms |
-
-| origin avg | shake avg | improves |
-| ---------- | --------- | -------- |
-| 515.6ms    | 365.4ms   | 29.1%    |
-
-### Prod Mode
-
-#### TODO
+|     | http://localhost:3000/state-origin | http://localhost:3000/state-shake | impovements |
+| --- | ---------------------------------- | --------------------------------- | ----------- |
+|     | ![origin](./md/prod-origin.png)    | ![shake](./md/prod-shake.jpeg)    |
+| avg | ⏰ 276ms                           | ⏰ 194ms                          | 🚀 29.2%    |
