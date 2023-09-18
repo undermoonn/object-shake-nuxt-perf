@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
+// TODO: name it instead of random filename, such as nested-object nested-object-array nested-object-array-string
 const filename = fakeString()
 
 fs.writeFileSync(
@@ -67,6 +68,7 @@ function fakeObject({ counts, deep }) {
   }
   const obj = {}
   for (let i = 0; i < counts; i++) {
+    // TODO: more value types
     obj[fakeString(5)] =
       deep > 1 ? fakeObject({ counts, deep: deep - 1 }) : fakeString(randomInt(100))
   }
