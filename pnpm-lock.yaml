@@ -2,11 +2,11 @@ lockfileVersion: 5.4
 
 specifiers:
   '@nuxt/devtools': latest
+  '@object-shake/vue': 1.0.0
   nuxt: ^3.7.3
-  vue-reactive-shake: 1.0.0-alpha.3
 
 dependencies:
-  vue-reactive-shake: 1.0.0-alpha.3
+  '@object-shake/vue': 1.0.0
 
 devDependencies:
   '@nuxt/devtools': 0.8.3_nuxt@3.7.3
@@ -1219,6 +1219,17 @@ packages:
       - vti
       - vue-tsc
     dev: true
+
+  /@object-shake/core/1.0.0:
+    resolution: {integrity: sha512-K3WqWtZmx++gph2MH8agjKbS5QLoziKijut2mxO3BbYYqeKrhXxT7eKnpjzH6jdWoSpnjuf0smNDEtxe95iTuA==}
+    dev: false
+
+  /@object-shake/vue/1.0.0:
+    resolution: {integrity: sha512-yqFHC7WUJHQwB4ZMoVjMZQTJbnq+CfRxFzm5HNeLefHQZOO3EYf6Hh3nCh5agR6keGZ4CH78Y4iFM7kEu2wORg==}
+    dependencies:
+      '@object-shake/core': 1.0.0
+      '@vue/reactivity': 3.3.4
+    dev: false
 
   /@parcel/watcher-android-arm64/2.3.0:
     resolution: {integrity: sha512-f4o9eA3dgk0XRT3XhB0UWpWpLnKgrh1IwNJKJ7UJek7eTYccQ8LR7XUWFKqw6aEq5KUNlCcGvSzKqSX/vtWVVA==}
@@ -6440,12 +6451,6 @@ packages:
   /vue-devtools-stub/0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==}
     dev: true
-
-  /vue-reactive-shake/1.0.0-alpha.3:
-    resolution: {integrity: sha512-bwkdOO0MOICmL6ixL4iq0cHKCmywmH3eq2SAOY+bqn7yHNGATkYoRwfYunjl5HNGjLweQrOJTuGvB/HisTZ+Kw==}
-    dependencies:
-      '@vue/reactivity': 3.3.4
-    dev: false
 
   /vue-router/4.2.4_vue@3.3.4:
     resolution: {integrity: sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ==}

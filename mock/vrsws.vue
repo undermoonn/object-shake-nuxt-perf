@@ -8,5 +8,5 @@ walker(state.value)
 </script>
 
 <template>
-  <p>vrsws</p>
+  <code>vrsws.vue</code>
 </template>

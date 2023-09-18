@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import json from './vrsws.json'
 import { useState } from '#app'
@@ -9,5 +8,5 @@ walker(state.value)
 </script>
 
 <template>
-  <p>vrsws</p>
+  <code>vrsws.origin.vue</code>
 </template>

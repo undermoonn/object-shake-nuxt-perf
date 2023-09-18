@@ -24,7 +24,7 @@ walker(state.value)
 </script>
 
 <template>
-  <p>${filename}</p>
+  <p>${filename}.vue</p>
 </template>
 `
 )
@@ -42,7 +42,7 @@ walker(state.value)
 </script>
 
 <template>
-  <p>${filename}</p>
+  <p>${filename}.origin.vue</p>
 </template>
 `
 )

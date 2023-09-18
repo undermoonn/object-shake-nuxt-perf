@@ -1,5 +1,5 @@
 {
-  "name": "vue-reactive-shake-perf",
+  "name": "object-shake-nuxt-perf",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -14,6 +14,6 @@
     "nuxt": "^3.7.3"
   },
   "dependencies": {
-    "vue-reactive-shake": "1.0.0-alpha.3"
+    "@object-shake/vue": "1.0.1"
   }
 }
