@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 const router = useRouter()
-const paths: string[] = router
-  .getRoutes()
-  .map((route) => route.path)
-  .sort((a, b) => a.length - b.length)
+const paths: string[] = router.getRoutes().map((route) => route.path)
 </script>
 
 <template>

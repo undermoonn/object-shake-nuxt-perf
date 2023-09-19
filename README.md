@@ -1,8 +1,24 @@
 # Test Case
 
-- The [walker](./walker.ts) reached 80% properties of object in each deep
+- The [walker](./walker.ts) reached 80% properties of object or array in each deep
 - State was inject into document html with `useState`
 - Runs on 14' M1 Pro & preview mode
+
+# SSR to Full load
+
+### data source 0
+
+![](./md/00-data-00.png)
+![](./md/00-data-01.png)
+![](./md/00-data-02.png)
+
+### data source 1
+
+![](./md/01-data-00.png)
+![](./md/01-data-01.png)
+![](./md/01-data-02.png)
+
+### group 1
 
 # Measurement
 
@@ -34,11 +50,3 @@ export default defineNuxtPlugin((nuxt: any) => {
   })
 })
 ```
-
-# SSR to Full load
-
-### nested-object
-
-The [test object](./mock/nested-object.json) is a 6 deeps with each 6 properties object
-
-![nested-object](./md/nested-object.png)

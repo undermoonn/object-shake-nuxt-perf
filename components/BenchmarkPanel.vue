@@ -47,7 +47,9 @@ watchEffect(() => {
     const path = paths.value[0]
     if (ssrToFullLoad.value) {
       result.value[path] = [...(result.value[path] || []), ssrToFullLoad.value]
-      location.href = path
+      setTimeout(() => {
+        location.href = path
+      }, 100)
     }
   }
 })
@@ -74,7 +76,15 @@ watchEffect(() => {
     <div v-for="resultPath in Object.keys(result)" mb-3 flex="~ inline items-start" w-full>
       <TextMono mr-2 style="width: 220px" inline-block flex="shrink-0"> {{ resultPath }}</TextMono>
       <div flex="~ 1 wrap">
-        <TextMono mr-1 mb-1 v-for="value in result[resultPath]">{{ value }}</TextMono>
+        <TextMono
+          mr-1
+          mb-1
+          v-for="value in result[resultPath]"
+          style="width: 33px"
+          flex="~ inline"
+          box-border
+          >{{ value }}</TextMono
+        >
       </div>
       <TextMono flex="shrink-0"
         >AVG:

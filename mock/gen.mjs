@@ -4,16 +4,19 @@ import { fileURLToPath } from 'node:url'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// name it, such as nested-object nested-object-array nested-object-array-string
-const filename = ''
+// name it, nested-object or nested-object-array
+const filename = undefined
 
-if (!filename) {
-  throw Error('filename required')
+// true of false
+const enableArray = undefined
+
+if (typeof filename === 'undefined' || typeof enableArray === 'undefined') {
+  throw Error('filename & enableArray required')
 }
 
 fs.writeFileSync(
   path.resolve(dirname, `${filename}.json`),
-  JSON.stringify(fakeObject({ counts: 6, deep: 6 }), null, 2)
+  JSON.stringify(fakeObject({ counts: 6, deep: 6, enableArray }), null, 2)
 )
 
 // ------------------------------------------------------------
@@ -30,15 +33,29 @@ function fakeString(length = 5) {
   return res
 }
 
-function fakeObject({ counts, deep }) {
+function randomBoolean() {
+  return randomInt(10) >= 5
+}
+
+function fakeObject({ counts, deep, enableArray }) {
   if (typeof counts !== 'number' || typeof deep !== 'number') {
     throw Error('`counts` & `deep` should be number')
   }
   const obj = {}
   for (let i = 0; i < counts; i++) {
-    // TODO: more value types
-    obj[fakeString(5)] =
-      deep > 1 ? fakeObject({ counts, deep: deep - 1 }) : fakeString(randomInt(100))
+    let value
+
+    if (enableArray && randomBoolean()) {
+      value = []
+      for (let arrI = 0; arrI < counts; arrI++) {
+        value.push(fakeObject({ counts, deep: 1 }))
+      }
+    } else {
+      obj[fakeString(5)] =
+        deep > 1 ? fakeObject({ counts, deep: deep - 1, enableArray }) : fakeString(randomInt(100))
+    }
+
+    obj[fakeString(5)] = value
   }
   return obj
 }
