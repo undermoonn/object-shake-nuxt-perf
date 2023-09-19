@@ -1,6 +1,5 @@
 # Test Case
 
-- The [walker](./walker.ts) reached 80% properties of object or array in each deep
 - State was inject into document html with `useState`
 - Runs on 14' M1 Pro & preview mode
 
