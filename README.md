@@ -6,18 +6,12 @@
 
 # SSR to Full load
 
-### data source 0
-
-![](./md/00-data-00.png)
-![](./md/00-data-01.png)
-![](./md/00-data-02.png)
-
-### data source 1
-
-![](./md/01-data-00.png)
-![](./md/01-data-01.png)
-![](./md/01-data-02.png)
-
+![](./md/50percent.png)
+![](./md/60percent.png)
+![](./md/70percent.png)
+![](./md/80percent.png)
+![](./md/90percent.png)
+![](./md/100percent.png)
 
 # Measurement
 

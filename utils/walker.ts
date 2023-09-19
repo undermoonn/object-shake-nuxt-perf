@@ -1,4 +1,4 @@
-export function walker(obj: Record<string | number, unknown>, reachRate: number = 0.8) {
+export function walker(obj: Record<string | number, unknown>, reachRate: number = 1) {
   const keys = shuffle(Object.keys(obj))
 
   keys.slice(0, Math.floor(keys.length * reachRate)).forEach((key) => {

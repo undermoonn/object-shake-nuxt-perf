@@ -1,9 +1,14 @@
 <script lang="ts" setup>
 import { useLocalStorage } from '@vueuse/core'
 
+interface Result {
+  cost: number
+  size: number
+}
+
 const ssrToFullLoad = useState<number>('ssr-to-full-load')
 const processing = useLocalStorage<boolean>('processing', false)
-const result = useLocalStorage<Record<string, number[]>>('benchmark-result', {})
+const result = useLocalStorage<Record<string, Array<Result>>>('benchmark-result', {})
 const benchMarkPaths = useLocalStorage<Record<string, number>>('benchmark-paths', {})
 
 const times = ref(10)
@@ -46,13 +51,52 @@ watchEffect(() => {
   if (processing.value && paths.value.length) {
     const path = paths.value[0]
     if (ssrToFullLoad.value) {
-      result.value[path] = [...(result.value[path] || []), ssrToFullLoad.value]
+      result.value[path] = [
+        ...(result.value[path] || []),
+        {
+          cost: ssrToFullLoad.value,
+          size: JSON.stringify(useState('json').value).length
+        }
+      ]
       setTimeout(() => {
         location.href = path
       }, 100)
     }
   }
 })
+
+function avg(arr: Result[], key: keyof Result): number {
+  return Number(
+    (
+      arr
+        .slice()
+        .sort((a, b) => a[key] - b[key])
+        .slice(1)
+        .reverse()
+        .slice(1)
+        .reduce((prev, curr) => prev + curr[key], 0) /
+      (arr.length - 2)
+    ).toFixed(0)
+  )
+}
+
+function max(arr: Result[]) {
+  return arr
+    .slice()
+    .sort((a, b) => a.cost - b.cost)
+    .pop()
+}
+
+function min(arr: Result[]) {
+  return arr
+    .slice()
+    .sort((a, b) => a.cost - b.cost)
+    .shift()
+}
+
+function toKB(value: number) {
+  return (value / 1024).toFixed(0)
+}
 </script>
 
 <template>
@@ -80,20 +124,30 @@ watchEffect(() => {
           mr-1
           mb-1
           v-for="value in result[resultPath]"
-          style="width: 33px"
-          flex="~ inline"
+          flex="~ inline col"
+          style="width: 58px"
           box-border
-          >{{ value }}</TextMono
+          :class="{
+            remove:
+              value.cost === min(result[resultPath])?.cost ||
+              value.cost === max(result[resultPath])?.cost
+          }"
         >
+          <span> {{ value.cost }} ms </span>
+          <span>{{ toKB(value.size) }} KB</span>
+        </TextMono>
       </div>
-      <TextMono flex="shrink-0"
-        >AVG:
-        {{
-          (
-            result[resultPath].reduce((prev, curr) => prev + curr, 0) / result[resultPath].length
-          ).toFixed(2)
-        }}
-        ms
+      <TextMono flex="~ shrink-0 col">
+        <span>
+          AVG Cost:
+          {{ avg(result[resultPath], 'cost') }}
+          ms
+        </span>
+        <span>
+          AVG Size:
+          {{ toKB(avg(result[resultPath], 'size')) }}
+          KB
+        </span>
       </TextMono>
     </div>
   </div>
@@ -102,5 +156,9 @@ watchEffect(() => {
 <style scoped>
 .benchmark-result {
   font-size: 10px;
+}
+.remove {
+  text-decoration: line-through;
+  opacity: 0.3;
 }
 </style>

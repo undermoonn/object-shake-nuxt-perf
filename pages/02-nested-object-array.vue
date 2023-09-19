@@ -4,7 +4,9 @@ import { useState } from '#app'
 import { walker } from '../utils/walker'
 
 const state = useState('json', () => json)
-walker(state.value)
+onServerPrefetch(() => {
+  walker(state.value)
+})
 </script>
 
 <template>

@@ -16,7 +16,7 @@ if (typeof filename === 'undefined' || typeof enableArray === 'undefined') {
 
 fs.writeFileSync(
   path.resolve(dirname, `${filename}.json`),
-  JSON.stringify(fakeObject({ counts: 6, deep: 6, enableArray }), null, 2)
+  JSON.stringify(fakeObject({ counts: 10, deep: 4, enableArray }), null, 2)
 )
 
 // ------------------------------------------------------------
