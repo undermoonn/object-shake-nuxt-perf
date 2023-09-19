@@ -18,7 +18,6 @@
 ![](./md/01-data-01.png)
 ![](./md/01-data-02.png)
 
-### group 1
 
 # Measurement
 
