@@ -3,7 +3,7 @@
 - State was inject into document html with `useState`
 - Runs on 14' M1 Pro & preview mode
 
-# SSR to Full load
+# SSR to Full load `v1.1.0`
 
 ![](./md/50percent.png)
 ![](./md/60percent.png)
