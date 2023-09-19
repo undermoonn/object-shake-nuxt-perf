@@ -4,48 +4,16 @@ import { fileURLToPath } from 'node:url'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// TODO: name it instead of random filename, such as nested-object nested-object-array nested-object-array-string
-const filename = fakeString()
+// name it, such as nested-object nested-object-array nested-object-array-string
+const filename = ''
+
+if (!filename) {
+  throw Error('filename required')
+}
 
 fs.writeFileSync(
   path.resolve(dirname, `${filename}.json`),
   JSON.stringify(fakeObject({ counts: 6, deep: 6 }), null, 2)
-)
-
-fs.writeFileSync(
-  path.resolve(dirname, `${filename}.vue`),
-  `
-<script setup lang="ts">
-import json from './${filename}.json'
-import { useStateShake } from '../useStateShake'
-import { walker } from '../walker'
-
-const state = useStateShake('${filename}', () => json)
-walker(state.value)
-</script>
-
-<template>
-  <p>${filename}.vue</p>
-</template>
-`
-)
-
-fs.writeFileSync(
-  path.resolve(dirname, `${filename}.origin.vue`),
-  `
-<script setup lang="ts">
-import json from './${filename}.json'
-import { useState } from '#app'
-import { walker } from '../walker'
-
-const state = useState('${filename}', () => json)
-walker(state.value)
-</script>
-
-<template>
-  <p>${filename}.origin.vue</p>
-</template>
-`
 )
 
 // ------------------------------------------------------------

@@ -1,3 +1,3 @@
 <template>
-  <div>vue reactive shake perf</div>
+  <Layout></Layout>
 </template>

@@ -7,13 +7,15 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "mock": "node ./mock/0_gen.mjs"
+    "mock": "node ./mock/gen.mjs"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@unocss/nuxt": "^0.55.7",
     "nuxt": "^3.7.3"
   },
   "dependencies": {
-    "@object-shake/vue": "1.0.1"
+    "@object-shake/vue": "1.1.0",
+    "@vueuse/core": "^10.4.1"
   }
 }

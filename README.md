@@ -1,13 +1,12 @@
-### Test Case
+# Test Case
 
-- The [test object](./mock/vrsws.json) is a 6 deeps with each 6 properties object
-- The [walker](./walker.ts) reached 80% properties (4 properties) in each deep
+- The [walker](./walker.ts) reached 80% properties of object in each deep
 - State was inject into document html with `useState`
 - Runs on 14' M1 Pro & preview mode
 
-### Measurement
+# Measurement
 
-#### Same as `SSR to Full load` in nuxt devtools
+### Same as `SSR to Full load` in nuxt devtools
 
 > https://github.com/nuxt/devtools/blob/main/packages/devtools/src/runtime/plugins/devtools.server.ts
 
@@ -26,24 +25,20 @@ export default defineNuxtPlugin(() => {
 ```ts
 // client plugin
 export default defineNuxtPlugin((nuxt: any) => {
-  if (typeof document === 'undefined' || typeof window === 'undefined') return
   nuxt.hook('app:mounted', () => {
     const appLoad = Date.now()
     const ssrStart = useState<number>('ssrStart')
-    const ssrToFullLoadTime = appLoad - ssrStart.value
 
-    // SSR to Full load
-    console.log(ssrToFullLoadTime)
+    // result
+    const ssrToFullLoadTime = appLoad - ssrStart.value
   })
 })
 ```
 
-### SSR to Full load
+# SSR to Full load
 
-|     | http://localhost:3000/state-origin | http://localhost:3000/state-shake | impovements |
-| --- | ---------------------------------- | --------------------------------- | ----------- |
-|     | ![origin](./md/prod-origin.png)    | ![shake](./md/prod-shake.jpeg)    |
-| avg | ⏰ 276ms                           | ⏰ 194ms                          | 🚀 29.2%    |
+### nested-object
 
-### TODO
-Need More Test Cases
+The [test object](./mock/nested-object.json) is a 6 deeps with each 6 properties object
+
+![nested-object](./md/nested-object.png)
