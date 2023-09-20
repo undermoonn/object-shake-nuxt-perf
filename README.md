@@ -5,7 +5,7 @@
 
 # Results
 
-<details> <summary>SSR to Full load `v1.2.1` with chrome devtools close and not random</summary>
+<details> <summary>SSR to Full load `v1.2.1` with chrome devtools close and not random walker</summary>
 
 ![](./md/v1.2.1/6.png)
 ![](./md/v1.2.1/5.png)
@@ -16,7 +16,7 @@
 
 </details>
 
-<details> <summary>SSR to Full load `v1.1.0` with chrome devtools open and random key get</summary>
+<details> <summary>SSR to Full load `v1.1.0` with chrome devtools open and random walker</summary>
 
 ![](./md/50percent.png)
 ![](./md/60percent.png)
