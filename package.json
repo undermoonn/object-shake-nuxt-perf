@@ -15,7 +15,7 @@
     "nuxt": "^3.7.3"
   },
   "dependencies": {
-    "@object-shake/vue": "1.1.0",
+    "@object-shake/vue": "1.2.1",
     "@vueuse/core": "^10.4.1"
   }
 }

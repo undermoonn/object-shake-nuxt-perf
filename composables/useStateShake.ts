@@ -7,6 +7,6 @@ export function useStateShake<T extends object>(
   init: () => T
 ): Ref<UnwrapRef<T>> {
   const [proxy, shaked] = reactiveShake(init())
-  useState(nuxtStateKey, () => shaked)
+  useState(nuxtStateKey, () => shaked())
   return ref(proxy)
 }

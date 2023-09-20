@@ -17,7 +17,13 @@ defineOptions({
 
 <template>
   <div class="input-wrapper">
-    <input v-model="modelValue" required autocomplete="off" v-bind="$attrs" />
+    <input
+      :value="modelValue"
+      @change="(e) => (modelValue = e.target.value)"
+      required
+      autocomplete="off"
+      v-bind="$attrs"
+    />
     <label for="name">{{ label }}</label>
   </div>
 </template>

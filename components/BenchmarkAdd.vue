@@ -8,7 +8,7 @@ defineProps<{
 const benchMarkPaths = useLocalStorage<Record<string, number | undefined>>('benchmark-paths', {})
 
 function addToBenchMark(path: string) {
-  benchMarkPaths.value[path] = Number(benchMarkPaths.value[path] || 0) + 10
+  benchMarkPaths.value[path] = Number(benchMarkPaths.value[path] || 0) + 20
 }
 </script>
 

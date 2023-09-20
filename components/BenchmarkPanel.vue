@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 import { useLocalStorage } from '@vueuse/core'
+import { useWalkerRate } from '../composables/useWalkerRate'
 
 interface Result {
   cost: number
   size: number
 }
-
+const { rate } = useWalkerRate()
 const ssrToFullLoad = useState<number>('ssr-to-full-load')
 const processing = useLocalStorage<boolean>('processing', false)
 const result = useLocalStorage<Record<string, Array<Result>>>('benchmark-result', {})
 const benchMarkPaths = useLocalStorage<Record<string, number>>('benchmark-paths', {})
-
 const times = ref(10)
 const paths = computed(() => Object.keys(benchMarkPaths.value).sort((a, b) => a.length - b.length))
 
@@ -102,10 +102,11 @@ function toKB(value: number) {
 <template>
   <hr />
   <h2 flex="~ items-center">
-    <TextMono mr-4>benchmarks</TextMono>
-    <Input v-model:value="times" label="repeat times" type="number" />
-    <Button ml-4 @click="setAllTimes">set</Button>
-    <Button ml-4 @click="reset">reset</Button>
+    <TextMono>benchmarks</TextMono>
+    <!-- <Input v-model:value="times" label="repeat times" type="number" />
+    <Button ml-4 @click="setAllTimes">set</Button> -->
+    <Button mx-4 @click="reset">reset</Button>
+    <Input v-model:value="rate" label="reach rate" />
   </h2>
   <ul>
     <li v-for="path in paths" mb-2>
@@ -125,7 +126,7 @@ function toKB(value: number) {
           mb-1
           v-for="value in result[resultPath]"
           flex="~ inline col"
-          style="width: 58px"
+          style="width: 64px"
           box-border
           :class="{
             remove:
