@@ -63,7 +63,7 @@ export default defineNuxtPlugin((nuxt) => {
 
 # Make your own benchmark
 
-Check [gen.mjs](./mock/gen.mjs), chang these variables
+Check [gen.mjs](./mock/gen.mjs), change these variables
 
 ```js
 // name it, nested-object or nested-object-array
