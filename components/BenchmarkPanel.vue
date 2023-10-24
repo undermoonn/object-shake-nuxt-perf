@@ -128,13 +128,16 @@ function toKB(value: number) {
           flex="~ inline col"
           style="width: 64px"
           box-border
-          :class="{
-            remove:
-              value.cost === min(result[resultPath])?.cost ||
-              value.cost === max(result[resultPath])?.cost
-          }"
         >
-          <span> {{ value.cost }} ms </span>
+          <span
+            :class="{
+              remove:
+                value.cost === min(result[resultPath])?.cost ||
+                value.cost === max(result[resultPath])?.cost
+            }"
+          >
+            {{ value.cost }} ms
+          </span>
           <span>{{ toKB(value.size) }} KB</span>
         </TextMono>
       </div>

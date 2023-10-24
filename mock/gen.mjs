@@ -1,14 +1,22 @@
-import fs from 'node:fs'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-
-const dirname = path.dirname(fileURLToPath(import.meta.url))
-
 // name it, nested-object or nested-object-array
 const filename = undefined
 
 // true of false
 const enableArray = undefined
+
+// object property counts
+const propertyCounts = 10
+
+// max nested object deeps
+const objectDeeps = 4
+
+// ------------------------------------------------------------
+
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 if (typeof filename === 'undefined' || typeof enableArray === 'undefined') {
   throw Error('filename & enableArray required')
@@ -16,7 +24,7 @@ if (typeof filename === 'undefined' || typeof enableArray === 'undefined') {
 
 fs.writeFileSync(
   path.resolve(dirname, `${filename}.json`),
-  JSON.stringify(fakeObject({ counts: 10, deep: 4, enableArray }), null, 2)
+  JSON.stringify(fakeObject({ counts: propertyCounts, deep: objectDeeps, enableArray }), null, 2)
 )
 
 // ------------------------------------------------------------
