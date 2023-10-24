@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ButtonHTMLAttributes } from 'nuxt/dist/app/compat/capi'
+import type { ButtonHTMLAttributes } from 'nuxt/dist/app/compat/vue-demi'
 
 interface Props extends /** @vue-ignore */ ButtonHTMLAttributes {}
 

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useVModel } from '@vueuse/core'
-import { InputHTMLAttributes } from 'nuxt/dist/app/compat/capi'
+import type { InputHTMLAttributes } from 'nuxt/dist/app/compat/vue-demi'
 
 interface Props extends /* @vue-ignore */ InputHTMLAttributes {
   label?: string
